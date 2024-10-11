@@ -1,0 +1,7 @@
+{
+  "name": "DMI_RIDE",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

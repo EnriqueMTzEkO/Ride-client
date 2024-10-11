@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div id="login">
+      <div class="title">
+        <ion-text>
+          <h1 id="login-text">Iniciar sesion</h1>
+        </ion-text>
+      </div>
+      <div id="login-form">
+        <form (submit)="signIn($event)" [formGroup]="form">
+          <ion-item lines="none">
+            <p class="login-label">Matricula</p>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input
+              type="text"
+              id="matricula"
+              formControlName="matricula"
+              aria-label="Custom input"
+              placeholder="420420"
+              class="custom"
+              placeholder="matricula"
+            ></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <p class="login-label">Contrasena</p>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input
+              id="password"
+              type="password"
+              formControlName="password"
+              aria-label="Custom input"
+              placeholder="**********"
+              class="custom"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-button id="login-button" type="submit">Iniciar sesion</ion-button>
+          </ion-item>
+        </form>
+      </div>
+    </div>
+    <div class="register">
+      <ion-button id="register-button" (click)="nav()">Registrate</ion-button>
+    </div>
+  </div>
+</ion-content>

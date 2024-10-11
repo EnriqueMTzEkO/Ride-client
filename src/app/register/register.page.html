@@ -1,0 +1,115 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<div id="container">
+  <div id="login" class="ion-justify-content-center">
+    <div class="title">
+      <ion-text>
+        <h1 id="login-text">Registrate</h1>
+      </ion-text>
+    </div>
+    <div id="login-form">
+      <form #registrationForm="ngForm">
+        <ion-item class="text-label" lines="none">
+          <p id="Custommatricula" class="login-label">Matricula</p>
+        </ion-item>
+        <div *ngIf="matriculaInput.invalid && matriculaInput.touched" class="error">
+          <p *ngIf="matriculaInput.errors?.['required'] || matriculaInput.errors?.['pattern']">Obligatoria y debe tener exactamente 6 dígitos numéricos.</p>
+        </div>
+        
+        <!-- Agregar margin-bottom a los ion-item o separadores entre inputs para evitar superposiciones -->
+        <ion-item lines="none">
+          <ion-input
+            type="text"
+            aria-labelledby="Custommatricula"
+            placeholder="420420"
+            class="custom"
+            [(ngModel)]="matricula"
+            name="matricula"
+            #matriculaInput="ngModel"
+            required
+            minlength="6"
+            maxlength="6"
+            pattern="^[0-9]{6}$"
+          ></ion-input>
+        </ion-item>
+      
+        <ion-item class="text-label" lines="none">
+          <p id="CustomPassword" class="login-label">Contraseña</p>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input
+            type="password"
+            aria-labelledby="CustomPassword"
+            placeholder="**********"
+            class="custom"
+            [(ngModel)]="password"
+            name="password"
+            #passwordInput="ngModel"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
+          <p *ngIf="passwordInput.errors?.['required'] || passwordInput.errors?.['pattern']">Obligatoria, al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial</p>
+        </div>
+      
+        <ion-item lines="none">
+          <p class="login-label">Confirmar contraseña</p>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-input
+            type="password"
+            aria-label="Custom input"
+            placeholder="**********"
+            class="custom"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            required
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="password !== confirmPassword && confirmPassword" class="error">
+          <p>Las contraseñas no coinciden.</p>
+        </div>
+      
+        <ion-item class="text-label" id="aviso" lines="none">
+          <ion-checkbox
+          id="checkbox"
+          [(ngModel)]="isAgreed"
+          (ionChange)="onCheckboxChange($event)"
+          name="isAgreed"
+          required
+          ></ion-checkbox>
+          <ion-label id="notice-label">
+            Acepto los <a (click)="navigateToprivacyNotice()">términos y condiciones</a>
+          </ion-label>
+        </ion-item>
+        <div *ngIf="!isAgreed && registrationForm.submitted" class="error">
+          <p>Debe aceptar los términos y condiciones.</p>
+        </div>
+      
+        <ion-item class="text-label" lines="none">
+          <ion-button
+            id="login-button"
+            (click)="onSubmit()"
+            [disabled]="registrationForm.invalid || password !== confirmPassword || !isAgreed"
+          >
+            Registrar
+          </ion-button>
+        </ion-item>
+      </form>
+      
+    </div>
+  </div>
+  <div class="register">
+  @defer (on viewport){
+    <ion-button id="register-button" (click)="navToLogin()">Iniciar sesion</ion-button>
+  } @placeholder{
+    <p></p>
+  } @loading (minimum 1s){
+    <p></p>
+  }
+  </div>
+</div>
+</ion-content>

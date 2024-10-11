@@ -1,0 +1,128 @@
+#container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#login{
+    display: grid;
+    background-color: #112122;
+    padding-bottom: 15vh;
+    border: 1 solid  transparent;
+    border-bottom-left-radius: 160px;
+    height: 80vh;
+}
+
+
+.title{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 7vh;
+    padding-top: 5vh;
+}
+
+#login-text{
+    color: #FFFFD2;
+    font-weight: bolder;
+    font-size: 250%;
+}
+
+#login-form{
+    display: grid;
+    justify-self: center;
+    --ion-item-background: #112122;
+    width: 350px;
+}
+
+.login-label{
+    margin-left: 20px;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    color: #FFFFD2;
+    font-size: 150%;
+    font-weight: bolder;
+}
+
+ion-input.custom {
+    --background: #FFFFD2;
+    --color: #112122;
+    --placeholder-color: #112122;
+    --placeholder-font-weight: bolder;
+    --placeholder-opacity: 0.3;
+  
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --border: 1px solid  transparent;
+    --border-radius: 15px;
+}
+
+
+#login-button{
+    --background: #FFFFD2;
+    --background-hover: #FFFFD2;
+    --background-activated: #FFFFD2;
+    --background-focused: #FFFFD2;
+  
+    --color: #112122;
+  
+    --border-radius: 0;
+    --border-color: transparent;
+    --border-style: none;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+  
+  
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+
+    --border: 1px solid  transparent;
+    --border-radius: 10px;
+    margin-top: 4vh;
+    margin-left: 20px;
+    font-weight: bolder;
+    font-size: 150%;
+}
+
+#register-button{
+    --background: #112122;
+    --background-hover: #112122;
+  
+    --color: #FFFFD2;
+    --border-style: solid;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --background-activated: none;
+    --background-focused: none;
+    --background-hover: none;
+    --background-activated-opacity: none;
+    --background-focused-opacity: none;
+    --background-hover-opacity: none;
+  
+  
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+
+    --border: 1px solid  transparent;
+    --border-radius: 10px;
+    font-weight: bolder;
+    font-size: 200%;
+}
+
+.register{
+    background-color: #FFFFD2;
+    border: 1px solid transparent;
+    border-top-right-radius: 160px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    align-content: center;
+}
+
+
+
