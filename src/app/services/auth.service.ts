@@ -7,12 +7,12 @@ import { ApiService } from './api.service';
 export class AuthService {
   constructor(private apiService: ApiService) {}
 
-  signIn(credentials: { username: string; password: string }) {
+  signIn(credentials: { matricula: string; password: string }) {
     return this.apiService.post('/signin', credentials);
   }
 
-  signUp(credentials: { username: string; password: string }) {
-    return this.apiService.post('/sign-in', credentials);
+  signUp(credentials: { matricula: string; password: string }) {
+    return this.apiService.post('/signup', credentials);
   }
 
   logout() {

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -21,8 +20,6 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router) {}
 
-    register: boolean = false;
-
     form: FormGroup = this.formBuilder.group({
       matricula: ['', Validators.required],
       password: ['', Validators.required],
@@ -33,7 +30,8 @@ export class LoginPage implements OnInit {
 
     this.authService.signIn(this.form.value).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        this.form.reset();
+        this.router.navigate(['/home']);  
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);

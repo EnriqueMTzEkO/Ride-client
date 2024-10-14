@@ -10,28 +10,23 @@
       </ion-text>
     </div>
     <div id="login-form">
-      <form #registrationForm="ngForm">
+      <form [formGroup]="singupForm" (ngSubmit)="signUp($event)">
         <ion-item class="text-label" lines="none">
           <p id="Custommatricula" class="login-label">Matricula</p>
         </ion-item>
-        <div *ngIf="matriculaInput.invalid && matriculaInput.touched" class="error">
-          <p *ngIf="matriculaInput.errors?.['required'] || matriculaInput.errors?.['pattern']">Obligatoria y debe tener exactamente 6 dígitos numéricos.</p>
+        <div *ngIf="singupForm.controls['matricula'].invalid && singupForm.controls['matricula'].touched" class="error">
+          <p *ngIf="singupForm.controls['matricula'].hasError('required') || singupForm.controls['matricula'].hasError('pattern')">
+            Obligatoria y debe tener exactamente 6 dígitos numéricos.
+          </p>
         </div>
         
-        <!-- Agregar margin-bottom a los ion-item o separadores entre inputs para evitar superposiciones -->
         <ion-item lines="none">
           <ion-input
             type="text"
             aria-labelledby="Custommatricula"
             placeholder="420420"
+            formControlName="matricula"
             class="custom"
-            [(ngModel)]="matricula"
-            name="matricula"
-            #matriculaInput="ngModel"
-            required
-            minlength="6"
-            maxlength="6"
-            pattern="^[0-9]{6}$"
           ></ion-input>
         </ion-item>
       
@@ -43,16 +38,14 @@
             type="password"
             aria-labelledby="CustomPassword"
             placeholder="**********"
+            formControlName="password"
             class="custom"
-            [(ngModel)]="password"
-            name="password"
-            #passwordInput="ngModel"
-            required
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
           ></ion-input>
         </ion-item>
-        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
-          <p *ngIf="passwordInput.errors?.['required'] || passwordInput.errors?.['pattern']">Obligatoria, al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial</p>
+        <div *ngIf="singupForm.controls['password'].invalid && singupForm.controls['password'].touched" class="error">
+          <p *ngIf="singupForm.controls['password'].hasError('required') || singupForm.controls['password'].hasError('pattern')">
+            Obligatoria, al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.
+          </p>
         </div>
       
         <ion-item lines="none">
@@ -61,44 +54,28 @@
         <ion-item lines="none">
           <ion-input
             type="password"
-            aria-label="Custom input"
             placeholder="**********"
+            formControlName="confirmPassword"
             class="custom"
-            [(ngModel)]="confirmPassword"
-            name="confirmPassword"
-            required
           ></ion-input>
         </ion-item>
-        <div *ngIf="password !== confirmPassword && confirmPassword" class="error">
+        <div *ngIf="singupForm.errors?.['passwordsMismatch'] && singupForm.get('confirmPassword')?.touched" class="error">
           <p>Las contraseñas no coinciden.</p>
         </div>
-      
+         
         <ion-item class="text-label" id="aviso" lines="none">
           <ion-checkbox
-          id="checkbox"
-          [(ngModel)]="isAgreed"
-          (ionChange)="onCheckboxChange($event)"
-          name="isAgreed"
-          required
-          ></ion-checkbox>
-          <ion-label id="notice-label">
-            Acepto los <a (click)="navigateToprivacyNotice()">términos y condiciones</a>
-          </ion-label>
+          formControlName="isAgreed"
+          >Acepta los <a (click)="navigateToprivacyNotice()">términos y condiciones</a></ion-checkbox>
         </ion-item>
-        <div *ngIf="!isAgreed && registrationForm.submitted" class="error">
+        <div *ngIf="!singupForm.controls['isAgreed'].value && singupForm.controls['isAgreed'].touched" class="error">
           <p>Debe aceptar los términos y condiciones.</p>
         </div>
       
         <ion-item class="text-label" lines="none">
-          <ion-button
-            id="login-button"
-            (click)="onSubmit()"
-            [disabled]="registrationForm.invalid || password !== confirmPassword || !isAgreed"
-          >
-            Registrar
-          </ion-button>
+          <ion-button id="login-button" type="submit" [disabled]="singupForm.invalid">Registrar</ion-button>
         </ion-item>
-      </form>
+      </form>      
       
     </div>
   </div>
