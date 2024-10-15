@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './gards/auth.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -9,26 +9,32 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage),
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage),
     canActivate: [authGuard],
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
   {
     path: 'privacy-notice',
-    loadComponent: () => import('./privacy-notice/privacy-notice.page').then( m => m.PrivacyNoticePage)
+    loadComponent: () => import('./pages/privacy-notice/privacy-notice.page').then( m => m.PrivacyNoticePage)
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then( m => m.HomePage),
+    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage),
     canActivate: [authGuard],
   },
   {
     path: 'account',
-    loadComponent: () => import('./account/account.page').then( m => m.AccountPage)
+    loadComponent: () => import('./pages/account/account.page').then( m => m.AccountPage),
+    canActivate: [authGuard],
   },
+  {
+    path: 'user-information',
+    loadComponent: () => import('./pages/user-information/user-information.page').then( m => m.UserInformationPage),
+  },
+
 
 
 ];

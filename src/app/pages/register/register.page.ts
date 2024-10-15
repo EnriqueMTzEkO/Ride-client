@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn, ReactiveFormsModule  } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CheckboxChangeEventDetail, IonButton, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem,
   IonLabel,

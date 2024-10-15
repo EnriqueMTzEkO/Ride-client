@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Usuario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveChanges()">Guardar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="userDataForm">
+    <ion-item lines="none">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="floating">direccion</ion-label>
+      <ion-input type="text" formControlName="address"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="text" formControlName="phoneNumber"></ion-input>
+    </ion-item>
+
+    <ion-item class="text-label"  lines="none">
+      <ion-checkbox
+        formControlName="isDriver">Eres conductor
+      </ion-checkbox>
+    </ion-item>
+
+    <div *ngIf="userDataForm.controls['isDriver'].value">
+      <ion-item lines="none">
+        <ion-label position="floating">Marca de tu vehiculo</ion-label>
+        <ion-input type="text" formControlName="brand"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Modelo de tu vehiculo</ion-label>
+        <ion-input type="text" formControlName="model"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Año de tu vehiculo</ion-label>
+        <ion-input type="text" formControlName="year"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label autocapitalize="characters" position="floating">Placas vehiculares</ion-label>
+        <ion-input type="text" formControlName="licensePlates"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Numero de licencia de conducir</ion-label>
+        <ion-input type="text" formControlName="driverLicense"></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Agrega más campos según sea necesario -->
+
+  </form>
+</ion-content>

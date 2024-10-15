@@ -22,4 +22,16 @@ export class ApiService {
       withCredentials: true,
     });
   }
+
+  put(url: string, body: any): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}${url}`, body, {
+      withCredentials: true,
+    });
+  }
+
+  delete(url: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}${url}`, {
+      withCredentials: true,
+    });
+  }
 }

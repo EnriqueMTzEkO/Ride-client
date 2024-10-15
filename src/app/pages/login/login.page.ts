@@ -1,6 +1,6 @@
 import { Component, input, OnInit } from '@angular/core';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonList, IonText } from '@ionic/angular/standalone';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
