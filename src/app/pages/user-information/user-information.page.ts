@@ -64,6 +64,7 @@ export class UserInformationPage implements OnInit {
 
   loadUserData() {
     this.userInfo.getInfo().subscribe(userData => {
+      console.log(userData)
       if (userData.length > 0) {
         const user = userData[0];
         console.log(userData);

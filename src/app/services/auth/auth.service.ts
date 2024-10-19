@@ -22,4 +22,8 @@ export class AuthService {
   isAuthenticated() {
     return this.apiService.get('/is-authenticated');
   }
+
+  deleteAcc() {
+    return this.apiService.delete('user/${UserId}')
+  }
 }
