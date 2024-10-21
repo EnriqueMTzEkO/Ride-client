@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonItem, IonLabel, IonCheckbox, IonInput, IonText } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonItem, IonLabel, IonCheckbox, IonInput, IonText, IonBackButton } from '@ionic/angular/standalone';
 import { UserInformationService } from 'src/app/services/user-information/user-information.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './user-information.page.html',
   styleUrls: ['./user-information.page.scss'],
   standalone: true,
-  imports: [IonText, IonInput, IonCheckbox, IonLabel, IonButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, ReactiveFormsModule]
+  imports: [IonBackButton, IonText, IonInput, IonCheckbox, IonLabel, IonButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, ReactiveFormsModule]
 })
 export class UserInformationPage implements OnInit {
   userDataForm: FormGroup;
@@ -19,7 +19,7 @@ export class UserInformationPage implements OnInit {
 
     this.userDataForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      phoneNumber: ['52', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
+      phoneNumber: ['52', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       address: this.formBuilder.group({
         city: ['', [Validators.required]],
         neighborhood: ['', [Validators.required]],
@@ -37,7 +37,6 @@ export class UserInformationPage implements OnInit {
       }),
     });
     this.userDataForm.get('driver.isDriver')?.valueChanges.subscribe(value => {
-      console.log('Valor de isDriver:', value);
       const vehicleGroup = this.userDataForm.get('driver.vehicle');
       if (value) {
         // Si es conductor, los campos de vehículo deben ser requeridos
@@ -64,10 +63,8 @@ export class UserInformationPage implements OnInit {
 
   loadUserData() {
     this.userInfo.getInfo().subscribe(userData => {
-      console.log(userData)
       if (userData.length > 0) {
         const user = userData[0];
-        console.log(userData);
   
         // coincidr estructura del formulario
         const formattedData = {
@@ -96,7 +93,6 @@ export class UserInformationPage implements OnInit {
           address: formattedData.address,
           driver: formattedData.driver
         }); // Llenar el formulario
-        console.log(formattedData);
       } else {
         console.error("User information not found")
       }
@@ -118,8 +114,6 @@ export class UserInformationPage implements OnInit {
         } : {}
       }
     };
-  
-    console.log(updatedUser);
   
     this.userInfo.updateInfo(updatedUser).subscribe({
       next: (response) => {

@@ -33,6 +33,7 @@ export const routes: Routes = [
   {
     path: 'user-information',
     loadComponent: () => import('./pages/user-information/user-information.page').then( m => m.UserInformationPage),
+    canActivate: [authGuard],
   },
 
 

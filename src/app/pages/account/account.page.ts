@@ -22,14 +22,14 @@ export class AccountPage implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    this.authService.logout().subscribe({
+  deleteAccount(){
+    this.authService.deleteAccount().subscribe({
       next: () => {
         this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error(error);
       },
-    });
+    })
   }
 }

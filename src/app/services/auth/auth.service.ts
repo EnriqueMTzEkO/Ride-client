@@ -23,7 +23,7 @@ export class AuthService {
     return this.apiService.get('/is-authenticated');
   }
 
-  deleteAcc() {
-    return this.apiService.delete('user/${UserId}')
+  deleteAccount() {
+    return this.apiService.delete('/user/delete');
   }
 }

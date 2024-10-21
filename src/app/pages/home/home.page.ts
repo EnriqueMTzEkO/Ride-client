@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonMenu, IonMenuButton, IonButtons, IonIcon, IonLabel, IonList, IonItem } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { UserInformationService } from 'src/app/services/user-information/user-information.service';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';;
 
 @Component({
   selector: 'app-home',
@@ -38,5 +38,9 @@ export class HomePage implements OnInit {
 
   goToUserInfo() {
     this.router.navigate(['/user-information']);
+  }
+
+  goToAccount(){
+    this.router.navigate(['/account'])
   }
 }
