@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tu ruta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tu ruta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div>
+    <ion-text>
+      <h2>¿A donde quieres ir?</h2>
+    </ion-text>
+    <app-add-route-map (locationSelected)="onLocationSelected($event)"></app-add-route-map>
+    <form (ngSubmit)="onSubmit()" #locationForm="ngForm">
+      <div>
+        <ion-datetime
+        name="reservationTime"
+        [min]="minDateTime"
+        [max]="maxDateTime"  
+        doneText="Confirmar" cancelText="Cancelar"
+        [showDefaultButtons]="true"
+        [(ngModel)]="selectedTime" 
+        (ionChange)="onTimeChange($event)">
+          <span slot="title">¿A que hora sera tu salida?</span>
+        </ion-datetime>
+        <div class="error" *ngIf="validTime == false">
+          <ion-text>La hora de salida no valida</ion-text><br>
+          <ion-text>Asegurese de colocar una hora futura y presionar el boton de confirmar</ion-text>
+        </div>
+      </div>
+      <ion-button type="submit" [disabled]="!locationForm.form.valid">Enviar</ion-button>
+      <div class="error" *ngIf="errorGeneratingRote == true" >
+        <ion-text>Ocurrio un error al enviar los datos, recarge la pagina e intentelo nuevamente</ion-text>
+      </div>
+    </form>
+  </div>
+</ion-content>

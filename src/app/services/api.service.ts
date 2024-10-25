@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -31,6 +31,13 @@ export class ApiService {
 
   delete(url: string): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}${url}`, {
+      withCredentials: true,
+    });
+  }
+
+  //Maps
+  addRoute(url: string, body: any): Observable <any> {
+    return this.httpClient.post(`${this.baseUrl}${url}`, body, {
       withCredentials: true,
     });
   }

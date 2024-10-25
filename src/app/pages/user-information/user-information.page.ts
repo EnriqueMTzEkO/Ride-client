@@ -92,7 +92,7 @@ export class UserInformationPage implements OnInit {
           phoneNumber: formattedData.phoneNumber,
           address: formattedData.address,
           driver: formattedData.driver
-        }); // Llenar el formulario
+        });
       } else {
         console.error("User information not found")
       }
@@ -102,9 +102,9 @@ export class UserInformationPage implements OnInit {
   saveChanges() {
     const updatedUser = {
       ...this.userDataForm.value,
-      address: this.userDataForm.value.address, // `address` sea un array
+      address: this.userDataForm.value.address,
       driver: {
-        isDriver: this.userDataForm.value.driver.isDriver, // `isDriver` dentro de `driver`
+        isDriver: this.userDataForm.value.driver.isDriver,
         vehicle: this.userDataForm.value.driver.isDriver ? {
           brand: this.userDataForm.value.driver.vehicle.brand,
           model: this.userDataForm.value.driver.vehicle.model,

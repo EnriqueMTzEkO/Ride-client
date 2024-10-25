@@ -1,0 +1,30 @@
+#map {
+    height: 70vh;
+    width: 100%;
+  }
+  
+  #map-button{
+    --background: #FFFFD2;
+    --background-hover: #FFFFD2;
+    --background-activated: #FFFFD2 !important;
+    --background-focused: #FFFFD2;
+  
+    --color: #112122;
+  
+    --border-radius: 0;
+    --border-color: transparent;
+    --border-style: none;
+    --border-width: 1px;
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+  
+  
+    // --padding-top: 10px;
+    // --padding-bottom: 10px;
+  
+    --border: 1px solid  transparent;
+    --border-radius: 10px;
+    margin-left: 20px;
+    font-weight: bolder;
+    font-size: 150%;
+  }

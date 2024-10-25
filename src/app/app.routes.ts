@@ -35,6 +35,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/user-information/user-information.page').then( m => m.UserInformationPage),
     canActivate: [authGuard],
   },
+  {
+    path: 'generate-rute',
+    loadComponent: () => import('./pages/generate-rute/generate-rute.page').then( m => m.GenerateRutePage),
+    canActivate: [authGuard],
+  },
 
 
 

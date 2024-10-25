@@ -1,0 +1,3 @@
+<ion-input type="text" #addressInput placeholder="Buscar calle" />
+<ion-button  id="map-button" (click)="searchAddress(addressInput.value)">Buscar</ion-button>
+<div #mapElement id="map"></div>

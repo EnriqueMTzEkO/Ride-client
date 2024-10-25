@@ -12,7 +12,7 @@ export class UserInformationService {
     return this.apiService.get('/userdata');
   }
 
-  updateInfo(credentials: {name: string; phoneNumber: string;
+  updateInfo(data: {name: string; phoneNumber: string;
     address: {
       city: string;
       neighborhood: string;
@@ -29,10 +29,10 @@ export class UserInformationService {
       };
     };
   }) {
-    return this.apiService.put('/userdata', credentials);
+    return this.apiService.put('/userdata', data);
   }
   // Realmente solo se usa si put falla
-  addInfo(credentials: {name: string; phoneNumber: string;
+  addInfo(data: {name: string; phoneNumber: string;
     address: {
       city: string;
       neighborhood: string;
@@ -49,6 +49,6 @@ export class UserInformationService {
       };
     };
   }) {
-    return this.apiService.post(`/userdata`, credentials);
+    return this.apiService.post(`/userdata`, data);
   }
 }
