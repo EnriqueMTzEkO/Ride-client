@@ -34,11 +34,4 @@ export class ApiService {
       withCredentials: true,
     });
   }
-
-  //Maps
-  addRoute(url: string, body: any): Observable <any> {
-    return this.httpClient.post(`${this.baseUrl}${url}`, body, {
-      withCredentials: true,
-    });
-  }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonText, IonButton, IonDatetime } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonText, IonButton, IonDatetime, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { AddRouteMapComponent } from "../../components/add-route-map/add-route-map.component";
-import { DriverRouteService } from "../../services/map/driver route/driver-route.service";
+import { RouteService } from "../../services/map/routeServices/driver-route.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './generate-rute.page.html',
   styleUrls: ['./generate-rute.page.scss'],
   standalone: true,
-  imports: [IonDatetime, IonButton, IonText, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, AddRouteMapComponent]
+  imports: [IonBackButton, IonButtons, IonDatetime, IonButton, IonText, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, AddRouteMapComponent]
 })
 export class GenerateRutePage implements OnInit {
 
@@ -22,9 +22,10 @@ export class GenerateRutePage implements OnInit {
   maxDateTime: string;
   validTime: boolean = true;
   errorGeneratingRote: boolean = false;
+  hasActiveRoute = false;
 
 
-  constructor(private driverRoute: DriverRouteService,
+  constructor(private driverRoute: RouteService,
     private router: Router
   ){
     const now = new Date();
@@ -44,7 +45,9 @@ export class GenerateRutePage implements OnInit {
   onLocationSelected(event: { lat: number, lng: number }) {
     this.lat = event.lat;
     this.lng = event.lng;
+    console.log('Latitud seleccionada:', this.lat, 'Longitud seleccionada:', this.lng);
   }
+  
 
   onTimeChange(event: any) {
     this.selectedTime = event.detail.value;
@@ -54,8 +57,8 @@ export class GenerateRutePage implements OnInit {
 
   onSubmit() {
     const data = {
-      lat: 21.839708774067016,//this.lat,
-      lng: -102.35386763837696,//this.lng,
+      lat: this.lat,
+      lng: this.lng,
       selectedTime: this.selectedTime
     };
 
@@ -88,8 +91,12 @@ export class GenerateRutePage implements OnInit {
         this.router.navigate(['/home'])
       },
       error: (error) => {
-        console.error('Error al enviar los datos', error);
-        this.errorGeneratingRote = true;
+        console.error('Error', error);
+        if(error.error.message == "User has a route in progress"){
+          this.hasActiveRoute = true;
+        } else{
+          this.errorGeneratingRote = true;
+        }
       }
     });
   }

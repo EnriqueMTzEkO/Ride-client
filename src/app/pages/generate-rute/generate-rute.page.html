@@ -1,18 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Tu ruta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publica una ruta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tu ruta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
   <div>
     <ion-text>
-      <h2>¿A donde quieres ir?</h2>
+      <h2>¿Cual es el destino al que quieres llegar?</h2>
     </ion-text>
     <app-add-route-map (locationSelected)="onLocationSelected($event)"></app-add-route-map>
     <form (ngSubmit)="onSubmit()" #locationForm="ngForm">
@@ -32,10 +30,13 @@
           <ion-text>Asegurese de colocar una hora futura y presionar el boton de confirmar</ion-text>
         </div>
       </div>
-      <ion-button type="submit" [disabled]="!locationForm.form.valid">Enviar</ion-button>
       <div class="error" *ngIf="errorGeneratingRote == true" >
         <ion-text>Ocurrio un error al enviar los datos, recarge la pagina e intentelo nuevamente</ion-text>
       </div>
+      <div class="error" *ngIf="hasActiveRoute == true" >
+        <ion-text>Ya tienes una ruta en progreso</ion-text>
+      </div>
+      <ion-button type="submit" [disabled]="!locationForm.form.valid">Enviar</ion-button>
     </form>
   </div>
 </ion-content>
