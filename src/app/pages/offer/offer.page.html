@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Oferta al conductor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Oferta al conductor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div>
+    <ion-text>Selecciona tu destino</ion-text>
+    <app-add-route-map (locationSelected)="onLocationSelected($event)"></app-add-route-map>
+    <div class="price">
+    <form [formGroup]="priceForm">
+      <ion-item lines="none">
+        <ion-label position="fixed">Precio</ion-label>
+        <ion-input ngDefaultControl type="number" formControlName="price"></ion-input>
+        <div *ngIf="priceForm.controls['price'].invalid && priceForm.controls['price'].touched">
+          <ion-text color="danger" *ngIf="priceForm.controls['price'].errors?.['required']">El nombre es obligatorio.</ion-text>
+        </div>
+      </ion-item>
+    </form>
+  </div>
+  </div>
+</ion-content>

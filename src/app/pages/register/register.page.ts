@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CheckboxChangeEventDetail, IonButton, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem,
-  IonLabel,
-  IonList, IonRouterLink, IonText, IonTitle, IonToolbar, IonCheckbox } from '@ionic/angular/standalone';
+import { IonButton, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem, IonLabel,
+          IonList, IonRouterLink, IonText, IonTitle, IonToolbar, IonCheckbox } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { IonCheckboxCustomEvent } from '@ionic/core';
 
 @Component({
   selector: 'app-register',

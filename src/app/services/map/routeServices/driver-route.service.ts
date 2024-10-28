@@ -14,4 +14,12 @@ export class RouteService {
   getRoutes(){
     return this.apiService.get('/routes')
   }
+
+  getRoute(routeId: any){
+    return this.apiService.get(`/routes/${routeId}`);
+  }
+
+  addDestination( data: { lat: number | null, lng: number | null, routeId: string | null } ) {
+    return this.apiService.put('/routes', data);
+  }
 }

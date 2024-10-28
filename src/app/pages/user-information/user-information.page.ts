@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton, IonItem, IonLabel, IonCheckbox, IonInput, IonText, IonBackButton } from '@ionic/angular/standalone';
 import { UserInformationService } from 'src/app/services/user-information/user-information.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-information',

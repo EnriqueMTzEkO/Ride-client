@@ -3,6 +3,7 @@ import { GoogleMapsLoaderService } from "src/app/services/map/google-maps-loader
 import { RouteService } from "../../services/map/routeServices/driver-route.service";
 import { CommonModule } from "@angular/common";
 import { IonText, IonButton } from "@ionic/angular/standalone";
+import { Router } from '@angular/router';
 
 declare let google: any;
 
@@ -22,7 +23,7 @@ export class ShowRouteMapComponent implements OnInit {
   directionsRenderers: google.maps.DirectionsRenderer[] = [];
   formattedDepartureTimes: string[] = [];
 
-  constructor(private googleMapsLoader: GoogleMapsLoaderService, private RouteService: RouteService) {}
+  constructor(private googleMapsLoader: GoogleMapsLoaderService, private RouteService: RouteService, private router: Router,) {}
 
   uniCords = { lat: 21.839708774067006, lng: -102.35386763837646 };
 
@@ -100,5 +101,9 @@ export class ShowRouteMapComponent implements OnInit {
         console.error('Error al calcular la ruta: ', status);
       }
     });
+  }
+
+  goToOffer(RouteId: string){
+    this.router.navigate([`/offer/${RouteId}`]);
   }
 }
