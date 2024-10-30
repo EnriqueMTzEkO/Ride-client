@@ -33,9 +33,11 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-button (click)="goToGenereteRoute()">Publica una ruta<ion-icon name="add-circle"></ion-icon></ion-button>
-    <div>
-      <app-show-route-map></app-show-route-map>
+    <div id="home-container">
+      <ion-button id="add-offer-button" (click)="goToGenereteRoute()">Soy conductor<ion-icon id="add-offer-icon" name="add-circle"></ion-icon></ion-button>
+      <div>
+        <app-show-route-map></app-show-route-map>
+      </div>
     </div>
   </ion-content>
 </div>
