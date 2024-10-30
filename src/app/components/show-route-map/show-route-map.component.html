@@ -1,8 +1,8 @@
 <ng-container *ngFor="let route of routes; let i = index">
-    <div>
+    <div id="rute-data">
         <ion-text>Hora de salida: {{ formattedDepartureTimes[i] }}</ion-text>
-        <div #mapElement style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
-        <ion-button>Ofertar</ion-button>
+        <div #mapElement id="map"></div>
+        <ion-button id="offer-button">Ofertar</ion-button>
     </div>
 </ng-container>
   
