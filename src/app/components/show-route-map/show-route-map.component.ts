@@ -22,6 +22,7 @@ export class ShowRouteMapComponent implements OnInit {
   directionsServices: google.maps.DirectionsService[] = [];
   directionsRenderers: google.maps.DirectionsRenderer[] = [];
   formattedDepartureTimes: string[] = [];
+  noRoutes: boolean = false;
 
   constructor(private googleMapsLoader: GoogleMapsLoaderService, private RouteService: RouteService, private router: Router,) {}
 
@@ -30,16 +31,16 @@ export class ShowRouteMapComponent implements OnInit {
   ngOnInit(): void {
     this.RouteService.getRoutes().subscribe(routeData => {
       console.log(routeData);
-      if (routeData) {
-        this.routes = routeData;  // Store all routes
+      if (!routeData.message) {
+        this.routes = routeData;
         this.googleMapsLoader.load().then(() => {
-          // Load all maps once Google Maps is ready
           this.loadAllMaps();
         }).catch(error => {
           console.error('Error loading Google Maps', error);
         });
       } else {
-        console.log('No hay viajes');
+        this.noRoutes = true;
+        console.log(this.noRoutes);
       }
     });
   }

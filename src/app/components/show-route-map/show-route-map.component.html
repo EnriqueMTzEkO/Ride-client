@@ -5,3 +5,6 @@
         <ion-button id="offer-button"(click)="goToOffer(route._id)">Ofertar</ion-button>
     </div>
 </ng-container>
+<div id="no-routes-message" *ngIf="noRoutes == true">
+    <ion-text>Actualmente no hay nadie ofreciendo un viaje :'c</ion-text>
+</div>

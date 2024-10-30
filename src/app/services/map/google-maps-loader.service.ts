@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class GoogleMapsLoaderService {
   private googleMapsLoaded = false;
-
   constructor() { }
 
   load(): Promise<void> {
@@ -13,8 +12,8 @@ export class GoogleMapsLoaderService {
       if (this.googleMapsLoaded) {
         resolve();
         return;
-      } 
-// 
+      }
+
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=marker`;
       script.async = true;
@@ -27,5 +26,4 @@ export class GoogleMapsLoaderService {
       document.body.appendChild(script);
     });
   }
-  
 }

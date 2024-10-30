@@ -17,8 +17,10 @@ export class OfferPage implements OnInit {
   routeId!: string;
   lat: number | null = null;
   lng: number | null = null;
-  price!: number;
   priceForm: FormGroup;
+  noAddress = false;
+  noPrice = false;
+
   constructor(
     private route: ActivatedRoute,
     private routeService: RouteService,
@@ -26,11 +28,9 @@ export class OfferPage implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.priceForm = this.formBuilder.group({
-      price: [0, [Validators.required]],
+      price: [null, [Validators.required]],
     });
   }
-
-  
 
   ngOnInit() {
     this.routeId = this.route.snapshot.paramMap.get('id')!; // get route Id from url
@@ -42,24 +42,29 @@ export class OfferPage implements OnInit {
   }
 
   sendOffer() {
-    if (this.priceForm.valid) {
-      console.log('Precio enviado:', this.priceForm.value.price);
+    const data = {
+      price: this.priceForm.value.price,
+      lat: this.lat,
+      lng: this.lng,
+      routeId: this.routeId,
+    };
+    if (!this.lat || !this.lng) {
+      this.noAddress = true;
+    } else {
+      if(!this.priceForm.value.price){
+        this.noPrice = true;
+      } else {
+        console.log('Datos a enviar:', data);
+        this.routeService.addDestination(data).subscribe({
+          next: (response) => {
+            console.log('Datos enviados: ', response);
+            this.router.navigate(['/home']);
+          },
+          error: (error) => {
+            console.error('Error', error);
+          }
+        });
+      }
     }
-      const data = {
-        price: this.price,
-        lat: this.lat,
-        lng: this.lng,
-        routeId: this.routeId,
-      };
-
-      this.routeService.addDestination(data).subscribe({
-        next: (response) => {
-          console.log('Datos enviados: ', response);
-          this.router.navigate(['/home']);
-        },
-        error: (error) => {
-          console.error('Error', error);
-        }
-      });
   }
 }

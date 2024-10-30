@@ -8,6 +8,12 @@
     margin-bottom: 2vh;
 }
 
+#no-routes-message{
+  margin-top: 10vh;
+  font-size: 120%;
+  text-align: center;
+}
+
 div[ng-reflect-ng-for] {
     height: 400px;
     width: 100%;
