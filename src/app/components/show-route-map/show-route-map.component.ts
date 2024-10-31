@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChildren, QueryList, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, OnInit } from '@angular/core';
 import { GoogleMapsLoaderService } from "src/app/services/map/google-maps-loader.service";
 import { RouteService } from "../../services/map/routeServices/driver-route.service";
 import { CommonModule } from "@angular/common";
@@ -18,7 +18,7 @@ export class ShowRouteMapComponent implements OnInit {
   @ViewChildren('mapElement') mapElements!: QueryList<ElementRef>;
 
   maps: google.maps.Map[] = [];
-  routes: any[] = [];  // store multiple route data
+  routes: any[] = [];  // store routes data
   directionsServices: google.maps.DirectionsService[] = [];
   directionsRenderers: google.maps.DirectionsRenderer[] = [];
   formattedDepartureTimes: string[] = [];
@@ -33,6 +33,7 @@ export class ShowRouteMapComponent implements OnInit {
       console.log(routeData);
       if (!routeData.message) {
         this.routes = routeData;
+        console.log(this.routes);
         this.googleMapsLoader.load().then(() => {
           this.loadAllMaps();
         }).catch(error => {

@@ -45,6 +45,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/offer/offer.page').then( m => m.OfferPage),
     canActivate: [authGuard],
   },
+  {
+    path: 'check-offers/:id',
+    loadComponent: () => import('./pages/check-offers/check-offers.page').then( m => m.CheckOffersPage),
+    canActivate: [authGuard],
+  },
+
 
 
 
