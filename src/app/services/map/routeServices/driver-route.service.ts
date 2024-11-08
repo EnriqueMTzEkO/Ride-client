@@ -30,4 +30,8 @@ export class RouteService {
   getUserOffers(){
     return this.apiService.get(`/routes/offers`);
   }
+
+  aceptOffer( data: { routeId: any, offerAccepted: any } ){
+    return this.apiService.put('/routes/offers/acepted', data);
+  }
 }

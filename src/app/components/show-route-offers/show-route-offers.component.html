@@ -1,6 +1,7 @@
-<ng-container *ngFor="let route of offers; let i = index">
+<ng-container *ngFor="let offer of offers; let i = index">
   <div id="rute-data">
       <div #mapElement  id="map"></div>
-      <ion-button id="offer-button" >Aceptar oferta</ion-button>
+      <ion-text>Por ${{offer.price}}</ion-text>
+      <ion-button id="offer-button" (click)="acceptOffer(offer._id)">Aceptar oferta</ion-button>
   </div>
 </ng-container>

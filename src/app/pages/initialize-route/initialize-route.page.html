@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>initialize route</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text>Espera al pasajero frente al patio cívico para iniciar el viaje</ion-text><br>
+  <ion-button id="present-alert">Iniciar viaje</ion-button>
+  <ion-alert
+    trigger="present-alert"
+    header="Seguro que quieres iniciar el viaje?"
+    [buttons]="ConfirmInitTrip"
+    (didDismiss)="setResult($event)"
+  ></ion-alert>
+</ion-content>

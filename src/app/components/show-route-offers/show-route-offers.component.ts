@@ -34,6 +34,7 @@ export class ShowRouteOffersComponent  implements OnInit {
       this.RouteService.getUserOffers().subscribe(routeOffers => {
         console.log(routeOffers);
         this.offers = routeOffers;
+        console.log(this.offers);
         this.googleMapsLoader.load().then(() => {
           this.loadAllMaps();
         }).catch(error => {
@@ -116,6 +117,24 @@ export class ShowRouteOffersComponent  implements OnInit {
         console.error('Error al calcular la ruta: ', status);
       }
     });
+  }
+
+  acceptOffer(offerId: string){
+    const data = {
+      routeId: this.routeId,
+      offerAccepted: offerId
+    }
+
+    console.log(data);
+    this.RouteService.aceptOffer(data).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate([`/initialize-route/${offerId}`])
+      },
+      error: (error) => {
+        console.error("error accepting offer:", error);
+      }
+    })
   }
   
 }

@@ -50,6 +50,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/check-offers/check-offers.page').then( m => m.CheckOffersPage),
     canActivate: [authGuard],
   },
+  {
+    path: 'initialize-route/:id',
+    loadComponent: () => import('./pages/initialize-route/initialize-route.page').then( m => m.InitializeRoutePage),
+    canActivate: [authGuard],
+  },
+
 
 
 

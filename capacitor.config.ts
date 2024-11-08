@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'dmi.ride.com ',
   appName: 'DMI_RIDE',
   webDir: 'www'
 };
