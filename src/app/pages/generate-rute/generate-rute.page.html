@@ -14,9 +14,10 @@
     </ion-text>
     <app-add-route-map (locationSelected)="onLocationSelected($event)"></app-add-route-map>
     <form (ngSubmit)="onSubmit()" #locationForm="ngForm">
-      <div>
-        <ion-datetime
+      <div id="datetime">
+        <ion-datetime 
         name="reservationTime"
+        id="calendar"
         [min]="minDateTime"
         [max]="maxDateTime"  
         doneText="Confirmar" cancelText="Cancelar"
@@ -25,10 +26,9 @@
         (ionChange)="onTimeChange($event)">
           <span slot="title">¿A que hora sera tu salida?</span>
         </ion-datetime>
-        <div class="error" *ngIf="validTime == false">
-          <ion-text>La hora de salida no valida</ion-text><br>
-          <ion-text>Asegurese de colocar una hora futura y presionar el boton de confirmar</ion-text>
-        </div>
+      </div>
+      <div class="error" *ngIf="validTime == false">
+        <ion-text>La hora de salida no valida</ion-text>
       </div>
       <div class="error" *ngIf="errorGeneratingRote == true" >
         <ion-text>Ocurrio un error al enviar los datos, recarge la pagina e intentelo nuevamente</ion-text>
@@ -36,7 +36,13 @@
       <div class="error" *ngIf="hasActiveRoute == true" >
         <ion-text>Ya tienes una ruta en progreso</ion-text>
       </div>
-      <ion-button type="submit" [disabled]="!locationForm.form.valid">Enviar</ion-button>
+      <div class="error" *ngIf="locationSelected == false" >
+        <ion-text>Selecciona en el mapa el lugar al que te diriges</ion-text>
+      </div>
+      <div *ngIf="selectedTime != undefined || '' ">
+        <ion-text>Tu viaje esta programado para el {{time}}</ion-text>
+      </div>
+      <ion-button type="submit">Enviar</ion-button>
     </form>
   </div>
 </ion-content>

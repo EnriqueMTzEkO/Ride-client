@@ -1,15 +1,39 @@
 #map {
-    height: 70vh;
+    height: 50vh;
     width: 100%;
-  }
-  
+}
+
+#input-add-route{
+  display: flex;
+  margin-bottom: 4vh;
+  align-content: center;
+}
+
+
+
+ion-input.custom {
+  --background: #FFFFD2;
+  --color: #112122;
+  --placeholder-color: #112122;
+  --placeholder-font-weight: bolder;
+  --placeholder-opacity: 0.3;
+
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  --border: 1px solid  transparent;
+  --border-radius: 15px;
+  width: 70vw;
+}
+
   #map-button{
-    --background: #FFFFD2;
-    --background-hover: #FFFFD2;
-    --background-activated: #FFFFD2 !important;
-    --background-focused: #FFFFD2;
+    --background: #112122;
+    --background-hover: #112122;
+    --background-activated: #112122;
+    --background-focused: #112122;
   
-    --color: #112122;
+    --color: #FFFFD2;
   
     --border-radius: 0;
     --border-color: transparent;
@@ -18,13 +42,7 @@
   
     --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
   
-  
-    // --padding-top: 10px;
-    // --padding-bottom: 10px;
-  
     --border: 1px solid  transparent;
     --border-radius: 10px;
-    margin-left: 20px;
-    font-weight: bolder;
-    font-size: 150%;
+    margin: 0px 0px 0px 5px;
   }

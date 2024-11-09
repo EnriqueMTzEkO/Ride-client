@@ -1,11 +1,17 @@
-capacitor-google-map {
-    display: inline-block;
-    width: 275px;
-    height: 400px;
+
+
+#datetime{
+    margin: 3vh 0 3vh 0;
+    display: flex;
+    justify-content: center;
 }
 
+#calendar{
+    width: 100vw;
+}
 
 .error {
     color: #ff4d4d;
     font-size: 14px;
+    width: 100vw;
 }

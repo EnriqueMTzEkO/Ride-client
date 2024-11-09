@@ -1,3 +1,6 @@
-<ion-input type="text" #addressInput placeholder="Buscar calle" />
-<ion-button  id="map-button" (click)="searchAddress(addressInput.value)">Buscar</ion-button>
-<div #mapElement id="map"></div>
+
+<div id="input-add-route">
+    <ion-input class="custom" type="text" #addressInput placeholder="Buscar calle" />
+    <ion-button  id="map-button" (click)="searchAddress(addressInput.value)">Buscar</ion-button>
+</div>
+    <div #mapElement id="map"></div>

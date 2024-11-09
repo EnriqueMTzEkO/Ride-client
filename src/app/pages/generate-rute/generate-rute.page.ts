@@ -17,13 +17,14 @@ export class GenerateRutePage implements OnInit {
 
   lat: number | null = null;
   lng: number | null = null;
-  selectedTime: string = '';
+  selectedTime!: string;
+  locationSelected!: boolean;
   minDateTime: string;
   maxDateTime: string;
   validTime: boolean = true;
   errorGeneratingRote: boolean = false;
   hasActiveRoute = false;
-
+  time = '';
 
   constructor(private driverRoute: RouteService,
     private router: Router
@@ -39,7 +40,7 @@ export class GenerateRutePage implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    console.log(this.selectedTime);
   }
 
   onLocationSelected(event: { lat: number, lng: number }) {
@@ -51,8 +52,14 @@ export class GenerateRutePage implements OnInit {
 
   onTimeChange(event: any) {
     this.selectedTime = event.detail.value;
-    console.log('Hora seleccionada:', this.selectedTime);
     this.validTime = true;
+    
+    const fechaHora = new Date(this.selectedTime);
+    const opciones: Intl.DateTimeFormatOptions = {
+      weekday: 'long', hour: '2-digit', minute: '2-digit', hour12: true
+    };
+    const diaHoraFormateada = fechaHora.toLocaleString('es-ES', opciones);
+    this.time = diaHoraFormateada;
   }
 
   onSubmit() {
@@ -80,6 +87,7 @@ export class GenerateRutePage implements OnInit {
       this.validTime = false;
       console.log("no valido: " + this.validTime);
     }
+
   }
 
   addRoute(data: { lat: number | null, lng: number | null, selectedTime: string | null }) {
@@ -94,8 +102,12 @@ export class GenerateRutePage implements OnInit {
         console.error('Error', error);
         if(error.error.message == "User has a route in progress"){
           this.hasActiveRoute = true;
-        } else{
-          this.errorGeneratingRote = true;
+        } else{ 
+          if(error.status == 400){
+            this.locationSelected = false;
+          } else{
+            this.errorGeneratingRote = true;
+          }
         }
       }
     });
