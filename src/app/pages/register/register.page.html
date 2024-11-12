@@ -11,16 +11,12 @@
     </div>
     <div id="login-form">
       <form [formGroup]="singupForm" (ngSubmit)="signUp($event)">
-        <ion-item class="text-label" lines="none">
           <p id="Custommatricula" class="login-label">Matricula</p>
-        </ion-item>
         <div *ngIf="singupForm.controls['matricula'].invalid && singupForm.controls['matricula'].touched" class="error">
           <p *ngIf="singupForm.controls['matricula'].hasError('required') || singupForm.controls['matricula'].hasError('pattern')">
             Obligatoria y debe tener exactamente 6 dígitos numéricos.
           </p>
         </div>
-        
-        <ion-item lines="none">
           <ion-input
             type="text"
             aria-labelledby="Custommatricula"
@@ -28,12 +24,7 @@
             formControlName="matricula"
             class="custom"
           ></ion-input>
-        </ion-item>
-      
-        <ion-item class="text-label" lines="none">
           <p id="CustomPassword" class="login-label">Contraseña</p>
-        </ion-item>
-        <ion-item lines="none">
           <ion-input
             type="password"
             aria-labelledby="CustomPassword"
@@ -41,52 +32,33 @@
             formControlName="password"
             class="custom"
           ></ion-input>
-        </ion-item>
         <div *ngIf="singupForm.controls['password'].invalid && singupForm.controls['password'].touched" class="error">
           <p *ngIf="singupForm.controls['password'].hasError('required') || singupForm.controls['password'].hasError('pattern')">
             Obligatoria, al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.
           </p>
         </div>
-      
-        <ion-item lines="none">
           <p class="login-label">Confirmar contraseña</p>
-        </ion-item>
-        <ion-item lines="none">
           <ion-input
             type="password"
             placeholder="**********"
             formControlName="confirmPassword"
             class="custom"
           ></ion-input>
-        </ion-item>
         <div *ngIf="singupForm.errors?.['passwordsMismatch'] && singupForm.get('confirmPassword')?.touched" class="error">
           <p>Las contraseñas no coinciden.</p>
         </div>
-         
-        <ion-item class="text-label" id="aviso" lines="none">
           <ion-checkbox
           formControlName="isAgreed"
           >Acepta los <a (click)="navigateToprivacyNotice()">términos y condiciones</a></ion-checkbox>
-        </ion-item>
         <div *ngIf="!singupForm.controls['isAgreed'].value && singupForm.controls['isAgreed'].touched" class="error">
           <p>Debe aceptar los términos y condiciones.</p>
         </div>
-      
-        <ion-item class="text-label" lines="none">
           <ion-button id="login-button" type="submit" [disabled]="singupForm.invalid">Registrar</ion-button>
-        </ion-item>
-      </form>      
-      
+      </form>
     </div>
   </div>
   <div class="register">
-  @defer (on viewport){
     <ion-button id="register-button" (click)="navToLogin()">Iniciar sesion</ion-button>
-  } @placeholder{
-    <p></p>
-  } @loading (minimum 1s){
-    <p></p>
-  }
   </div>
 </div>
 </ion-content>

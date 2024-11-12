@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonText } from '@ionic/angular/standalone';
 import { RouteService } from 'src/app/services/map/routeServices/driver-route.service';
 import { ShowRouteOffersComponent } from "src/app/components/show-route-offers/show-route-offers.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-offers',
@@ -16,10 +17,23 @@ export class CheckOffersPage implements OnInit {
   offers!: any[];
 
   constructor(
-    private driverRoute: RouteService ) { }
+    private driverRoute: RouteService, private router: Router,) { }
 
   ngOnInit() {
-    
+    this.hasARoute();
+  }
+
+  hasARoute(){
+    this.driverRoute.redirectToRoute().subscribe({
+      next: (response) => {
+        console.log(response)
+        const routeId = response.data._id;
+        this.router.navigate([`on-route/${routeId}`]);
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
   }
 
 }

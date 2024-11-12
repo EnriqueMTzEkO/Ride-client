@@ -9,8 +9,12 @@
   <ion-button id="present-alert">Iniciar viaje</ion-button>
   <ion-alert
     trigger="present-alert"
-    header="Seguro que quieres iniciar el viaje?"
+    header="Seguro que desas iniciar el viaje?
+    El pasajero ya debe estar dentro del vehículo"
     [buttons]="ConfirmInitTrip"
     (didDismiss)="setResult($event)"
   ></ion-alert>
+  <div class="error" *ngIf="validLocation == false">
+    <ion-text>No te encuentras cerca de la universidad</ion-text>
+  </div>
 </ion-content>

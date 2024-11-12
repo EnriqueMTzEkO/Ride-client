@@ -11,10 +11,7 @@
       </div>
       <div id="login-form">
         <form (submit)="signIn($event)" [formGroup]="form">
-          <ion-item lines="none">
             <p class="login-label">Matricula</p>
-          </ion-item>
-          <ion-item lines="none">
             <ion-input
               type="text"
               id="matricula"
@@ -23,11 +20,7 @@
               placeholder="420420"
               class="custom"
             ></ion-input>
-          </ion-item>
-          <ion-item lines="none">
             <p class="login-label">Contrasena</p>
-          </ion-item>
-          <ion-item lines="none">
             <ion-input
               id="password"
               type="password"
@@ -36,10 +29,7 @@
               placeholder="**********"
               class="custom"
             ></ion-input>
-          </ion-item>
-          <ion-item lines="none">
             <ion-button id="login-button" type="submit">Iniciar sesion</ion-button>
-          </ion-item>
         </form>
       </div>
     </div>

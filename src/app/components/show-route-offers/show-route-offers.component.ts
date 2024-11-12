@@ -23,7 +23,7 @@ export class ShowRouteOffersComponent  implements OnInit {
   directionsServices: google.maps.DirectionsService[] = [];
   directionsRenderers: google.maps.DirectionsRenderer[] = [];
 
-  constructor(private googleMapsLoader: GoogleMapsLoaderService, private RouteService: RouteService, private router: Router, private route: ActivatedRoute,) {}
+  constructor(private googleMapsLoader: GoogleMapsLoaderService, private RouteService: RouteService, private router: Router, private route: ActivatedRoute) {}
 
   uniCords = { lat: 21.839708774067006, lng: -102.35386763837646 };
 

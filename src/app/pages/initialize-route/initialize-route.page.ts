@@ -3,7 +3,9 @@ import { Capacitor } from '@capacitor/core';
 import { Geolocation, PositionOptions } from '@capacitor/geolocation';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouteService } from "../../services/map/routeServices/driver-route.service";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonText, IonAlert } from '@ionic/angular/standalone';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-initialize-route',
@@ -22,20 +24,33 @@ export class InitializeRoutePage implements OnInit {
     lat: 21.840856,
     lng: -102.353815
   };
+  offerId = '';
   inRange!: boolean;
+  validLocation!: boolean;
 
 
-  constructor() { }
+  constructor(private routeService: RouteService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.offerId = this.route.snapshot.paramMap.get('id')!;
   }
 
   async initTrip() {
     await this.getLocation();
     this.inRange = this.isInRange(this.centerCoords.lat, this.centerCoords.lng, this.userCoords.lat, this.userCoords.lng, 1000);
-    if(this.inRange == true){
+    if(this.inRange != true){
+      this.validLocation == true;
+      const data = {offerId: this.offerId}
+      this.routeService.initRoute(data).subscribe({
+        next: (res) => {
+          console.log("Enviado: ", res);
+          
+          this.router.navigate([`/on-route/${res.route._id}`])
+        }
+      })
       console.log("iniciar viaje");
     } else {
+      this.validLocation == false;
       console.log("No se encuentra cerca de la universidad");
     }
   }
@@ -45,7 +60,6 @@ export class InitializeRoutePage implements OnInit {
       text: 'Cancelar',
       role: 'cancel',
       handler: () => {
-        console.log('Alert canceled');
       },
     },
     {
@@ -58,7 +72,6 @@ export class InitializeRoutePage implements OnInit {
   ];
 
   setResult(ev: any) {
-    console.log(`Dismissed with role: ${ev.detail.role}`);
   }
 
   async getLocation() {

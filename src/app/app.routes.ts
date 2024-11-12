@@ -55,6 +55,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/initialize-route/initialize-route.page').then( m => m.InitializeRoutePage),
     canActivate: [authGuard],
   },
+  {
+    path: 'on-route/:id',
+    loadComponent: () => import('./pages/on-route/on-route.page').then( m => m.OnRoutePage),
+    canActivate: [authGuard],
+  },
+
 
 
 

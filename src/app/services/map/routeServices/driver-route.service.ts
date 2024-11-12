@@ -34,4 +34,16 @@ export class RouteService {
   aceptOffer( data: { routeId: any, offerAccepted: any } ){
     return this.apiService.put('/routes/offers/acepted', data);
   }
+
+  initRoute(data: {offerId: any}){
+      return this.apiService.put(`/routes/offers/init`, data);
+  }
+
+  redirectToRoute(){
+    return this.apiService.get(`/routes/offers/init`);
+  }
+
+  finishRoute(routeId: any){
+    return this.apiService.delete(`/routes/offers/finish/${routeId}`);
+  }
 }
