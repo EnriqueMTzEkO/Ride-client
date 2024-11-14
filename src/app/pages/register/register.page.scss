@@ -54,7 +54,6 @@ ion-input.custom {
     --placeholder-font-weight: bolder;
     --placeholder-opacity: 0.3;
     --highlight-color: #112122;
-  
     --padding-bottom: 10px;
     --padding-end: 10px;
     --padding-start: 10px;
@@ -67,14 +66,13 @@ ion-input.custom {
 .error {
     color: #ff4d4d;
     font-size: 14px;
-    margin-left: 20px;  /* Alinear con los inputs */
+    margin-left: 20px;
 }
 
 .error p{
     margin: 0px 0px 5px 0px;
 }
 
-/* Añadir margen inferior a los items para espacio con los mensajes de error */
 ion-item {
     margin-bottom: 15px;
 }
@@ -105,17 +103,12 @@ ion-item {
     --background-hover: #FFFFD2;
     --background-activated: #FFFFD2;
     --background-focused: #FFFFD2;
-  
     --color: #112122;
-  
     --border-radius: 0;
     --border-color: transparent;
     --border-style: none;
     --border-width: 1px;
-  
     --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  
-  
     --padding-top: 10px;
     --padding-bottom: 10px;
 
@@ -142,7 +135,6 @@ ion-item {
     --background-activated-opacity: none;
     --background-focused-opacity: none;
     --background-hover-opacity: none;
-  
   
     --padding-top: 10px;
     --padding-bottom: 10px;
