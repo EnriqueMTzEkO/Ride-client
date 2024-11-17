@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonText, IonItem, IonButton, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonText, IonItem, IonButton, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouteService } from 'src/app/services/map/routeServices/driver-route.service';
 import { AddRouteMapComponent } from "../../components/add-route-map/add-route-map.component";
@@ -11,7 +11,7 @@ import { AddRouteMapComponent } from "../../components/add-route-map/add-route-m
   templateUrl: './offer.page.html',
   styleUrls: ['./offer.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonButton, IonItem, IonText, IonButtons, IonBackButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, ReactiveFormsModule, FormsModule, AddRouteMapComponent]
+  imports: [IonInput, IonLabel, IonButton, IonItem, IonText, IonButtons, IonBackButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, ReactiveFormsModule, FormsModule, AddRouteMapComponent]
 })
 export class OfferPage implements OnInit {
   routeId!: string;

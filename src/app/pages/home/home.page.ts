@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.hasARoute();
   }
 
   logout(){
@@ -46,14 +46,65 @@ export class HomePage implements OnInit {
   goToAccount(){
     this.router.navigate(['/account'])
   }
+  
+  hasARoute() {
+    this.driverRoute.getUserRoutes().subscribe({
+      next: (res) => {
+        if (!res || res.length === 0) {
+          console.log('No tienes viajes en curso');
+          return;
+        }
+        const route = res[0]._id;
+        switch (res[0].status) {
+          case 'OnRoute':
+            this.router.navigate([`/on-route/${route}`]);
+            break;
+          case 'Accepted':
+            this.router.navigate([`/initialize-route/${res[0].offer[0]._id}`])
+            break;
+          default:
+            console.log('Estado desconocido de la ruta');
+        }
+      }
+    });
+    this.driverRoute.waitingForPassenger().subscribe({
+      next: (res) => {
+        console.log(res);
+        if(!res || res.length == 0){
+          console.log("no tienes viajes en curso");
+        } else {
+          this.routeData = res.data;
+          const routeId = this.routeData._id;
+          if(this.routeData.status == 'Accepted'){
+            this.router.navigate([`/offer-acceped/${this.routeData._id}`]);
+          } else{
+            this.router.navigate([`/check-offers/${routeId}`])
+          }
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+  
 
   goTocheckOffers(){
     this.driverRoute.getUserRoutes().subscribe({
-      next: (routeData) => {
-        console.log(routeData);
-        this.routeData = routeData;
-        const routeId = this.routeData[0]._id;
-        this.router.navigate([`/check-offers/${routeId}`])
+      next: (res) => {
+        console.log(res);
+        if (!res || res.length === 0) {
+          console.log('No tienes viajes en curso');
+          return;
+         } else {
+          this.routeData = res;
+         const routeId = this.routeData._id;
+         if(this.routeData.status == 'Acepted'){
+           this.router.navigate([`/initialize-route/${this.routeData.offer[0]._id}`]);
+         } else{
+           this.router.navigate([`/check-offers/${routeId}`])
+         }
+        }
       },
       error: (error) => {
         console.error(error);

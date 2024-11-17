@@ -39,7 +39,7 @@ export class RouteService {
       return this.apiService.put(`/routes/offers/init`, data);
   }
 
-  redirectToRoute(){
+  waitingForPassenger(){
     return this.apiService.get(`/routes/offers/init`);
   }
 

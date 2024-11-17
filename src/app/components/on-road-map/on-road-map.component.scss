@@ -1,48 +1,50 @@
+#buttons{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 #map {
     height: 90vh;
     width: 95vw;
 }
 
-#input-add-route{
-  display: flex;
-  margin-bottom: 4vh;
-  align-content: center;
+#end-ride-button{
+  --background: #FFFFD2;
+  --background-hover: #FFFFD2;
+  --background-activated: #FFFFD2;
+  --background-focused: #FFFFD2;
+
+  --color: #112122;
+
+  --border-radius: 0;
+  --border-color: transparent;
+  --border-style: none;
+  --border-width: 1px;
+
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+
+  --border: 1px solid  transparent;
+  --border-radius: 10px;
 }
 
-
-
-ion-input.custom {
-  --background: #FFFFD2;
-  --color: #112122;
+#emergency-call-button {
+  --background: red;
+  --color: #ffffff;
   --placeholder-color: #112122;
   --placeholder-font-weight: bolder;
   --placeholder-opacity: 0.3;
-
+  --highlight-color-focused: none;
+  --highlight-color-invalid: none;
+  --highlight-color-valid: none;
   --padding-bottom: 10px;
   --padding-end: 10px;
   --padding-start: 10px;
   --padding-top: 10px;
   --border: 1px solid  transparent;
   --border-radius: 15px;
-  width: 70vw;
 }
-
-  #map-button{
-    --background: #112122;
-    --background-hover: #112122;
-    --background-activated: #112122;
-    --background-focused: #112122;
-  
-    --color: #FFFFD2;
-  
-    --border-radius: 0;
-    --border-color: transparent;
-    --border-style: none;
-    --border-width: 1px;
-  
-    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  
-    --border: 1px solid  transparent;
-    --border-radius: 10px;
-    margin: 0px 0px 0px 5px;
-  }

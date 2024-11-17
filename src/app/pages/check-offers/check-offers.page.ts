@@ -24,14 +24,17 @@ export class CheckOffersPage implements OnInit {
   }
 
   hasARoute(){
-    this.driverRoute.redirectToRoute().subscribe({
-      next: (response) => {
-        console.log(response)
-        const routeId = response.data._id;
-        this.router.navigate([`on-route/${routeId}`]);
-      },
-      error: (error) => {
-        console.log(error)
+    this.driverRoute.getUserRoutes().subscribe({
+      next: (res) => {
+        if(!res || res.length == 0){
+          console.log('no tienes viajes en curso');
+        } else{
+          const route =res[0]._id;
+          console.log(route);
+          if(res[0].status == 'OnRoute'){
+            this.router.navigate([`/on-route/${route}`]);
+          }
+        }
       }
     })
   }

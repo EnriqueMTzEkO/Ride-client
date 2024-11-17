@@ -60,6 +60,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/on-route/on-route.page').then( m => m.OnRoutePage),
     canActivate: [authGuard],
   },
+  {
+    path: 'offer-acceped/:id',
+    loadComponent: () => import('./pages/offer-acceped/offer-acceped.page').then( m => m.OfferAccepedPage)
+  },
+
 
 
 

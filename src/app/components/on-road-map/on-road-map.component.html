@@ -1,6 +1,7 @@
 <ng-container>
-  <div id="rute-data">
-      <div #mapElement  id="map"></div>
-      <ion-button id="offer-button" (click)="endRide()">Terminar viaje mi loco</ion-button>
-  </div>
+    <div id="buttons">
+      <ion-button id="end-ride-button" (click)="endRide()">Terminar viaje</ion-button>
+      <ion-button id="emergency-call-button">Llamar a emergencias</ion-button>
+    </div>
+    <div #mapElement  id="map"></div>
 </ng-container>

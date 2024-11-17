@@ -30,10 +30,10 @@ export class ShowRouteMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.RouteService.getRoutes().subscribe(routeData => {
-      console.log(routeData);
+      // console.log(routeData);
       if (!routeData.message) {
         this.routes = routeData;
-        console.log(this.routes);
+        // console.log(this.routes);
         this.googleMapsLoader.load().then(() => {
           this.loadAllMaps();
         }).catch(error => {
@@ -41,7 +41,7 @@ export class ShowRouteMapComponent implements OnInit {
         });
       } else {
         this.noRoutes = true;
-        console.log(this.noRoutes);
+        // console.log(this.noRoutes);
       }
     });
   }
@@ -71,7 +71,7 @@ export class ShowRouteMapComponent implements OnInit {
         lng: this.routes[index].driverData.driverDestination.lng
       };
   
-      console.log('Start:', start, 'End:', end);
+      // console.log('Start:', start, 'End:', end);
 
       const time = this.routes[index].driverData.driverDestination.departureTime;
       const fechaHora = new Date(time);

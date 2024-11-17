@@ -1,3 +1,79 @@
-.price{
-    height: 20vh;
-}
+/* General Styles for the Content */
+.content-wrapper {
+    margin: 1vh 5vw;
+    padding-bottom: 2vh;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2vh;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+  }
+  
+ 
+  .form-group {
+    width: 80vw;
+  }
+  
+
+  #offer-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+  }
+  
+  ion-input.price-input {
+    --background: #FFFFD2;
+    --color: #112122;
+    --placeholder-color: #112122;
+    --placeholder-font-weight: bolder;
+    --placeholder-opacity: 0.3;
+    --highlight-color-focused: none;
+    --highlight-color-invalid: none;
+    --highlight-color-valid: none;
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --border: 1px solid transparent;
+    --border-radius: 15px;
+  
+    width: 70vw;
+    margin-bottom: 1vh;
+  }
+  
+ 
+  .warning-text {
+    font-size: 1rem;
+    color: red;
+    margin-top: 1vh;
+  }
+  
+
+  #send-offer-button {
+    --background: #112122;
+    --background-hover: #112122;
+  
+    --color: #FFFFD2;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --background-activated: none;
+    --background-focused: none;
+    --background-hover: none;
+    --background-activated-opacity: none;
+    --background-focused-opacity: none;
+    --background-hover-opacity: none;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --border: 1px solid  transparent;
+    --border-radius: 10px;
+    font-weight: bolder;
+    width: 80vw;
+    margin-top: 2vh;
+  }
+  

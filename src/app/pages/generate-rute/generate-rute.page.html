@@ -40,9 +40,9 @@
         <ion-text>Selecciona en el mapa el lugar al que te diriges</ion-text>
       </div>
       <div *ngIf="selectedTime != undefined || '' ">
-        <ion-text>Tu viaje esta programado para el {{time}}</ion-text>
+        <ion-text>Programar viaje para el {{time}}</ion-text>
       </div>
-      <ion-button type="submit">Enviar</ion-button>
+      <ion-button id="publish-button" type="submit">Publicar</ion-button>
     </form>
   </div>
 </ion-content>

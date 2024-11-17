@@ -39,6 +39,9 @@ export class OnRoadMapComponent  implements OnInit {
   ngOnInit(): void {
     this.routeId = this.route.snapshot.paramMap.get('id')!;
     this.getroutedata();
+    setInterval(() => {
+      this.getLocation();
+    }, 10000);
   }
   
   getroutedata() {
@@ -53,15 +56,17 @@ export class OnRoadMapComponent  implements OnInit {
   loadMap() {
     this.googleMapsLoader.load().then(() => {
       const mapOptions: google.maps.MapOptions = {
-        center: { lat: this.driverData.lat, lng: this.driverData.lng },
-        zoom: 24,
+        center: { lat: this.centerCoords.lat, lng: this.centerCoords.lng },
+        zoom: 18,
         mapId: "DEMO_MAP_ID",
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
   
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       const directionsService = new google.maps.DirectionsService();
-      const directionsRenderer = new google.maps.DirectionsRenderer();
+      const directionsRenderer = new google.maps.DirectionsRenderer({
+        preserveViewport: true
+      });
       directionsRenderer.setMap(this.map);
   
       const start = { lat: 21.839708774067006, lng: -102.35386763837646 };  // Inicio
@@ -118,12 +123,11 @@ export class OnRoadMapComponent  implements OnInit {
         this.userCoords.lng = position.coords.longitude;
         console.log('Capacitor:', position);
   
-        // Centrar el mapa en la ubicación del usuario solo si el mapa está cargado
         if (this.mapLoaded && this.map) {
           setTimeout(() => {
             this.map.setCenter({ lat: this.userCoords.lat, lng: this.userCoords.lng });
             this.map.setZoom(18);
-          }, 300);
+          }, 500);
         }
       } else {
         if (!navigator.geolocation) {
@@ -142,11 +146,12 @@ export class OnRoadMapComponent  implements OnInit {
             this.userCoords.lat = position.coords.latitude;
             this.userCoords.lng = position.coords.longitude;
             console.log('Browser:', position);
-  
-            // Centrar el mapa en la ubicación del navegador solo si el mapa está cargado
+
             if (this.mapLoaded && this.map) {
-              this.map.setCenter({ lat: this.userCoords.lat, lng: this.userCoords.lng });
-              this.map.setZoom(18); // Ajustar el zoom si es necesario
+              setTimeout(() => {
+                this.map.setCenter({ lat: this.userCoords.lat, lng: this.userCoords.lng });
+                this.map.setZoom(18);
+              }, 500);
             } else {
               console.warn("Mapa aún no cargado");
             }
@@ -162,9 +167,10 @@ export class OnRoadMapComponent  implements OnInit {
       throw error;
     }
   }
+  
 
   endRide() {
-    console.log(this.routeId);
+    console.log("checar la locacion");
     this.routeService.finishRoute(this.routeId).subscribe({
       next: (res) => {
         console.log(res);

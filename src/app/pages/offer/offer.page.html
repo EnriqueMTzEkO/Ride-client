@@ -13,17 +13,27 @@
       <ion-title size="large">Oferta al conductor</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div>
-    <ion-text>Selecciona tu destino</ion-text>
+
+  <div class="content-wrapper">
+    <ion-text class="subtitle">Selecciona tu destino</ion-text>
     <app-add-route-map (locationSelected)="onLocationSelected($event)"></app-add-route-map>
-    <div class="price">
-    <form [formGroup]="priceForm">
-        <ion-label position="fixed">Oferta $</ion-label>
-        <ion-input ngDefaultControl type="number" formControlName="price"></ion-input>
-        <ion-text *ngIf="noAddress === true">Asegurate de seleccionar una ruta en en mapa</ion-text>
-        <ion-text *ngIf="noPrice === true">Selecciona un precio si quieres que sea gratis puedes seleccionar 0</ion-text>
-        <ion-button (click)="sendOffer()">Enviar oferta</ion-button>
+    
+    <form id="price-form" [formGroup]="priceForm">
+      <div class="form-group">
+        <ion-label id="offer-label">Oferta $</ion-label>
+        <ion-input class="price-input" ngDefaultControl type="number" formControlName="price"></ion-input>
+      </div>
+
+      <ion-text *ngIf="noAddress === true" class="warning-text">
+        Asegúrate de seleccionar una ruta en el mapa
+      </ion-text>
+      <ion-text *ngIf="noPrice === true" class="warning-text">
+        Selecciona un precio. Si prefieres que sea gratis, puedes seleccionar 0.
+      </ion-text>
+
+      <ion-button id="send-offer-button" (click)="sendOffer()">
+        Enviar oferta
+      </ion-button>
     </form>
-  </div>
   </div>
 </ion-content>
