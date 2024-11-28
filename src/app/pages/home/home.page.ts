@@ -78,7 +78,11 @@ export class HomePage implements OnInit {
           if(this.routeData.status == 'Accepted'){
             this.router.navigate([`/offer-acceped/${this.routeData._id}`]);
           } else{
-            this.router.navigate([`/check-offers/${routeId}`])
+            if(this.routeData.status == 'OnRoute'){
+              this.router.navigate([`/on-route/${this.routeData._id}`]);
+            } else {
+              return
+            }
           }
         }
       },
@@ -98,7 +102,7 @@ export class HomePage implements OnInit {
           return;
          } else {
           this.routeData = res;
-         const routeId = this.routeData._id;
+         const routeId = this.routeData[0]._id;
          if(this.routeData.status == 'Acepted'){
            this.router.navigate([`/initialize-route/${this.routeData.offer[0]._id}`]);
          } else{

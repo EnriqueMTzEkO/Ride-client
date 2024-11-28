@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, EventEmitter, Output, OnInit } from '@angular/core';
-import { IonButton } from '@ionic/angular/standalone';
+import { IonButton, IonText } from '@ionic/angular/standalone';
 import { Capacitor } from '@capacitor/core';
 import { Geolocation, PositionOptions } from '@capacitor/geolocation';
 import { GoogleMapsLoaderService } from "src/app/services/map/google-maps-loader.service";
@@ -13,7 +13,7 @@ declare let google: any;
   templateUrl: './on-road-map.component.html',
   standalone: true,
   styleUrls: ['./on-road-map.component.scss'],
-  imports: [IonButton, CommonModule]
+  imports: [IonText, IonButton, CommonModule]
 })
 export class OnRoadMapComponent  implements OnInit {
   @Output() locationSelected = new EventEmitter<{ lat: number, lng: number }>();
@@ -21,6 +21,7 @@ export class OnRoadMapComponent  implements OnInit {
   map!: google.maps.Map;
   marker: google.maps.marker.AdvancedMarkerElement | null = null;
   mapLoaded = false; // Bandera para saber si el mapa está cargado
+  routemap = true;
   
   routeId!: string;
   driverData!: any;
@@ -45,11 +46,19 @@ export class OnRoadMapComponent  implements OnInit {
   }
   
   getroutedata() {
-    this.routeService.getRoute(this.routeId).subscribe(Data => {
-      this.driverData = Data.driverData.driverDestination;
-      this.passengerData = Data.offer[0].passengerData.passengerDestination;
-      console.log(Data);
-      this.loadMap();
+    this.routeService.getRoute(this.routeId).subscribe({
+      next: (res) => {
+        this.driverData = res.driverData.driverDestination;
+        this.passengerData = res.offer[0].passengerData.passengerDestination;
+        console.log(res);
+        this.loadMap();
+      },
+      error: (err) => {
+        if(err.error.message == "Route not found"){
+          this.routemap = false;
+        }
+        console.error(err);
+      }
     });
   }
 

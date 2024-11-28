@@ -3,5 +3,8 @@
       <ion-button id="end-ride-button" (click)="endRide()">Terminar viaje</ion-button>
       <ion-button id="emergency-call-button">Llamar a emergencias</ion-button>
     </div>
+    <div *ngIf="routemap == false">
+      <ion-text>El viaje ha sido finalizado por algun usuario, regresa a la pagina principal</ion-text>
+    </div>
     <div #mapElement  id="map"></div>
 </ng-container>
